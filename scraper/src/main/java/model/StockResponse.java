@@ -6,15 +6,16 @@ import java.util.HashMap;
 
 public class StockResponse {
     @JsonProperty("Meta Data")
-    HashMap<String, String> metadata;
+    @SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection", "for serialization"})
+    private HashMap<String, String> metadata;
 
     @JsonProperty("Time Series (1min)")
-    HashMap<String, Value> timeSeries;
+    @SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection", "for serialization"})
+    private HashMap<String, Value> timeSeries;
 
     @Override
     public String toString() {
         return "StockResponse{\n" +
-                "\tmetadata=" + metadata + "\n" +
                 "\ttimeSeries=" + timeSeries + "\n"+
                 '}';
     }

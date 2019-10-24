@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 class Value {
     @JsonProperty("1. open")
-    String open;
+    private String open;
     @JsonProperty("2. high")
-    String high;
+    private String high;
     @JsonProperty("3. low")
-    String low;
+    private String low;
     @JsonProperty("4. close")
-    String close;
+    private String close;
     @JsonProperty("5. volume")
-    String volume;
+    private String volume;
 
     @Override
     public String toString() {
