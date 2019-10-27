@@ -11,6 +11,18 @@
 
     <artifactId>persister</artifactId>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
+        <dependency>
+            <groupId>org.influxdb</groupId>
+            <artifactId>influxdb-java</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-moshi -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-moshi</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+
         <dependency>
             <groupId>finance-service.com</groupId>
             <artifactId>data</artifactId>

@@ -18,6 +18,22 @@ public class Value {
         return close;
     }
 
+    public String getOpen() {
+        return open;
+    }
+
+    public String getHigh() {
+        return high;
+    }
+
+    public String getLow() {
+        return low;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
     @Override
     public String toString() {
         return "\t{\n" +
