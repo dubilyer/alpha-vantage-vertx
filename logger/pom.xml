@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>finance-service.com</groupId>
-            <artifactId>scraper</artifactId>
+            <artifactId>data</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

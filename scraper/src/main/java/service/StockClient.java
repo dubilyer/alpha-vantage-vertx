@@ -11,6 +11,7 @@ public interface StockClient {
             @Query("function") String function,
             @Query("symbol") String symbol,
             @Query("interval") String interval,
-            @Query("apikey") String apikey
+            @Query("apikey") String apikey,
+            @Query("outputsize") String outputSize
     );
 }

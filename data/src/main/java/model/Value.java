@@ -2,7 +2,7 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class Value {
+public class Value {
     @JsonProperty("1. open")
     private String open;
     @JsonProperty("2. high")
@@ -13,6 +13,10 @@ class Value {
     private String close;
     @JsonProperty("5. volume")
     private String volume;
+
+    public String getClose() {
+        return close;
+    }
 
     @Override
     public String toString() {

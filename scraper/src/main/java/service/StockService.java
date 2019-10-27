@@ -1,7 +1,9 @@
 package service;
 
+import config.Verticles;
 import exceptions.RestRequestException;
 import io.vertx.core.Vertx;
+import io.vertx.core.eventbus.DeliveryOptions;
 import model.StockResponse;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -9,11 +11,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+
 import java.util.Optional;
 
 import static config.Sources.*;
 
-public class StockService{
+public class StockService {
     private StockClient client;
     private Vertx vertx;
 
@@ -32,16 +35,18 @@ public class StockService{
 
     public void query(String function, String symbol, String interval) {
         client
-                .query(function, symbol, interval, ALPHA_VANTAGE.secret())
+                .query(function, symbol, interval, ALPHA_VANTAGE.secret(), "compact")
                 .enqueue(new Callback<StockResponse>() {
                     @Override
                     public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
+                        DeliveryOptions options = new DeliveryOptions().setCodecName("codec");
                         vertx.eventBus().publish(
-                                "[SCRAPER]",
+                                Verticles.SCRAPER.index(),
                                 Optional
                                         .ofNullable(response.body())
-                                        .orElseThrow(() -> new RestRequestException("Response body is null"))
-                                        );
+                                        .orElseThrow(() -> new RestRequestException("Response body is null")),
+                                options
+                        );
                     }
 
                     @Override

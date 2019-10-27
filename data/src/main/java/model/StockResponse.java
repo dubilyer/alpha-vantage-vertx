@@ -13,6 +13,14 @@ public class StockResponse {
     @SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection", "for serialization"})
     private HashMap<String, Value> timeSeries;
 
+    public HashMap<String, String> getMetadata() {
+        return metadata;
+    }
+
+    public HashMap<String, Value> getTimeSeries() {
+        return timeSeries;
+    }
+
     @Override
     public String toString() {
         return "StockResponse{\n" +

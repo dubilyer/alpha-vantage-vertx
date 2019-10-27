@@ -1,9 +1,9 @@
 package verticles;
 
+import config.Verticles;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.EventBus;
-import model.StockResponse;
 import model.StockResponseCodec;
 import service.StockService;
 import worker.Worker;
@@ -11,16 +11,17 @@ import worker.Worker;
 import java.util.LinkedList;
 import java.util.List;
 
+import static config.Verticles.*;
+
 public class ScraperVerticle extends AbstractVerticle {
-    private static final String PREFIX = "[SCRAPER]";
     private List<Worker> workers;
 
     @Override
     public void start(Future<Void> startFuture) {
         EventBus eventBus = vertx.eventBus();
         initWorkers();
-        eventBus.publish(PREFIX, "Scraper is ready");
-        eventBus.registerDefaultCodec(StockResponse.class, new StockResponseCodec());
+        eventBus.publish(SCRAPER.index(), "Scraper is ready");
+        eventBus.registerCodec(new StockResponseCodec());
         workers.forEach(w -> w.schedule(vertx));
     }
 

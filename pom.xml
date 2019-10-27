@@ -26,6 +26,7 @@
         <module>logger</module>
         <module>exposer</module>
         <module>persister</module>
+        <module>data</module>
     </modules>
     <dependencyManagement>
         <dependencies>

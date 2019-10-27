@@ -14,16 +14,17 @@ public class StockResponseCodec implements MessageCodec<StockResponse, StockResp
     @Override
     public StockResponse decodeFromWire(int i, Buffer buffer) {
         return Json.decodeValue(buffer, StockResponse.class);
+
     }
 
     @Override
     public StockResponse transform(StockResponse stockResponse) {
-        return null;
+        return stockResponse;
     }
 
     @Override
     public String name() {
-        return this.getClass().getSimpleName();
+        return "codec";
     }
 
     @Override
