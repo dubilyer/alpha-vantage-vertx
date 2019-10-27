@@ -14,7 +14,7 @@ public class LoggerVerticle extends AbstractVerticle {
                         String.join(
                                 " ",
                                 message.message().address(),
-                                message.message().body().toString()
+                                message.body().toString()
                         )
                 )
         );
