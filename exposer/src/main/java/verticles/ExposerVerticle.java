@@ -6,13 +6,16 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.ext.web.Router;
-import model.StockResponse;
+import model.stock.StockResponse;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static config.Verticles.*;
 
 public class ExposerVerticle extends AbstractVerticle {
 
-    private static final Gauge MSFT = Gauge.build().name("MSFT").help("Microsoft").register();
+    private Map<String, Gauge> metrics = new HashMap<>();
 
     @Override
     public void start(Future<Void> startFuture) {
@@ -22,7 +25,9 @@ public class ExposerVerticle extends AbstractVerticle {
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
         eventBus.publish(EXPOSER.index(), "Exposer is ready");
         eventBus.<StockResponse>consumer(SCRAPER.index(), message ->
-                MSFT.set(Double.parseDouble(message.body()
+                updateMetric(
+                        message.body().getMetadata().get("2. Symbol"),
+                        Double.parseDouble(message.body()
                                 .getTimeSeries()
                                 .entrySet()
                                 .stream()
@@ -30,8 +35,13 @@ public class ExposerVerticle extends AbstractVerticle {
                                 .get()
                                 .getValue()
                                 .getClose()
-
                         )
                 ));
+    }
+
+    private void updateMetric(String key, Double value) {
+        metrics
+                .computeIfAbsent(key, k -> Gauge.build().name(k).help(k).register())
+                .set(value);
     }
 }

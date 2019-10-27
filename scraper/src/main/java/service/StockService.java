@@ -4,7 +4,9 @@ import config.Verticles;
 import exceptions.RestRequestException;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.DeliveryOptions;
-import model.StockResponse;
+import model.stock.Interval;
+import model.stock.StockResponse;
+import model.stock.TimeFunction;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,9 +35,14 @@ public class StockService {
         client = retrofit.create(StockClient.class);
     }
 
-    public void query(String function, String symbol, String interval) {
+    public void query(String symbol) {
         client
-                .query(function, symbol, interval, ALPHA_VANTAGE.secret(), "compact")
+                .query(
+                        TimeFunction.TIME_SERIES_INTRADAY.name(),
+                        symbol,
+                        Interval.ONE.get(),
+                        ALPHA_VANTAGE.secret(),
+                        "compact")
                 .enqueue(new Callback<StockResponse>() {
                     @Override
                     public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {

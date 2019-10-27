@@ -1,7 +1,9 @@
-package model;
+package model.stock;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Value {
     @JsonProperty("1. open")
     private String open;
@@ -36,13 +38,13 @@ public class Value {
 
     @Override
     public String toString() {
-        return "\t{\n" +
-                "\t\topen='" + open + "\'\n" +
-                "\t\thigh='" + high + "\'\n" +
-                "\t\tlow='" + low + "\'\n" +
-                "\t\tclose='" + close + "\'\n" +
-                "\t\tvolume='" + volume + "\'\n" +
-                "\t}\n";
+        return "{" +
+                "open='" + open + "\'" +
+                "high='" + high + "\'" +
+                "low='" + low + "\'" +
+                "close='" + close + "\'" +
+                "volume='" + volume + "\'" +
+                "}";
 
     }
 }

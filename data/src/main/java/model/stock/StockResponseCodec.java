@@ -1,4 +1,4 @@
-package model;
+package model.stock;
 
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.MessageCodec;

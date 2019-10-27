@@ -1,4 +1,4 @@
-package model;
+package model.stock;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,8 +23,8 @@ public class StockResponse {
 
     @Override
     public String toString() {
-        return "StockResponse{\n" +
-                "\ttimeSeries=" + timeSeries + "\n"+
+        return "StockResponse{" +
+                "timeSeries=" + timeSeries +
                 '}';
     }
 }
