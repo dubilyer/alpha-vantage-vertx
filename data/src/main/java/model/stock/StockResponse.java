@@ -3,6 +3,7 @@ package model.stock;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class StockResponse {
     @JsonProperty("Meta Data")
@@ -13,11 +14,11 @@ public class StockResponse {
     @SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection", "for serialization"})
     private HashMap<String, Value> timeSeries;
 
-    public HashMap<String, String> getMetadata() {
+    public Map<String, String> getMetadata() {
         return metadata;
     }
 
-    public HashMap<String, Value> getTimeSeries() {
+    public Map<String, Value> getTimeSeries() {
         return timeSeries;
     }
 
