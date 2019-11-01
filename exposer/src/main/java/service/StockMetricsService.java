@@ -51,4 +51,11 @@ public class StockMetricsService {
     private void setMetric(String key, Label label, String value) {
         metrics.get(key)/*.labels(label.name())*/.set(Double.parseDouble(value));
     }
+
+    @SuppressWarnings("unchecked") //Checked in if condition
+    public <T> void handle(Message<T> tMessage) {
+        if (tMessage.body() instanceof StockResponse){
+            updateMetrics(((Message<StockResponse>) tMessage).body());
+        }
+    }
 }

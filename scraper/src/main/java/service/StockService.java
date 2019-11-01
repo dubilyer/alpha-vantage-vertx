@@ -28,7 +28,7 @@ public class StockService {
 
     public void init() {
         Retrofit retrofit = new Retrofit.Builder()
-                .client(new OkHttpClient.Builder().build())
+                .client(new OkHttpClient.Builder().addInterceptor(new DebugInterceptor()).build())
                 .baseUrl(ALPHA_VANTAGE.url())
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();

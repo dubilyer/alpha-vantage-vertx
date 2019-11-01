@@ -20,7 +20,7 @@ public class ExposerVerticle extends AbstractVerticle {
         router.route("/metrics").handler(new MetricsHandler());
         vertx.createHttpServer().requestHandler(router).listen(8080);
         eventBus.publish(EXPOSER.index(), "Exposer is ready");
-        eventBus.consumer(SCRAPER.index(), stockMetricsService::updateMetrics);
+        eventBus.consumer(SCRAPER.index(), stockMetricsService::handle);
     }
 
 }

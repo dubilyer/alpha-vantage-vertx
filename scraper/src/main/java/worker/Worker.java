@@ -15,6 +15,7 @@ public class Worker {
     }
 
     public void schedule(Vertx timer){
+        r.handle(new Random().nextLong());
         timer.setPeriodic(this.delay, this.r);
     }
 }
