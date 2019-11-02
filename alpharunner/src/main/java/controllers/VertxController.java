@@ -1,7 +1,10 @@
-package verticles;
+package controllers;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
+import verticles.ExposerVerticle;
+import verticles.LoggerVerticle;
+import verticles.ScraperVerticle;
 
 import java.util.stream.Stream;
 
